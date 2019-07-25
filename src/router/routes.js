@@ -2,9 +2,14 @@
 const routes = [
   {
     path: '/',
+    component: () => import('pages/Login.vue')
+  },
+  {
+    path: '/home',
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: '/', component: () => import('pages/Index.vue') },
+
+      { path: 'index', component: () => import('pages/Index.vue') },
       { path: 'curso', component: () => import('pages/Cursos.vue') },
       { path: 'incripcion', component: () => import('pages/PreInscripcion.vue') }
 

@@ -26,10 +26,20 @@
           </q-btn>
         </q-bar>
         <q-card-section>
-          <div class="text-h6">Detalles</div>
+          <div class="text-h6">Detalles del Seminario</div>
         </q-card-section>
-        <q-card-section v-for="semi in seminario.nombre" :key="semi.id">
-          {{ semi.nombre }}
+        <q-card-section >
+          <q-card class="detalle">
+            <img :src="seminario.url_imagen">
+            <q-card-section>
+              <div class="text-h6" style="color:#FFFF;"><span>Nombre:</span> {{ seminario.nombre }}</div>
+              <div class="text-subtitle2" style="color:#FFFF;"> <span>Costo:</span> {{ seminario.costo }} {{ seminario.fecha }}</div>
+              <div class="text-subtitle2" style="color:#FFFF;"><span>Fecha:</span> {{ seminario.fecha }}</div>
+            </q-card-section>
+            <q-card-section style="color:#FFFF;">
+              <span>Descripcion:</span> {{ seminario.descripcion }}
+            </q-card-section>
+          </q-card>
         </q-card-section>
       </q-card>
     </q-dialog>
@@ -47,7 +57,10 @@ export default {
       cursos: [],
       seminario: {
         nombre: '',
-        fecha: ''
+        fecha: '',
+        costo: '',
+        descripcion: '',
+        url_imagen: ''
       }
     }
   },
@@ -70,11 +83,18 @@ export default {
     },
     detalle (seminario) {
       this.seminario.nombre = seminario.nombre
-      console.log(seminario)
+      this.seminario.descripcion = seminario.descripcion
+      this.seminario.costo = seminario.costo
+      this.seminario.fecha = seminario.fecha
+      this.seminario.url_imagen = seminario.url_imagen
     }
     // ...mapActions('cursos', ['setCursos'])
   }
 }
 </script>
 <style>
+.detalle{
+  text-justify: auto;
+  background-color: blue;
+}
 </style>

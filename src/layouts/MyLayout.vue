@@ -36,12 +36,12 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.quasar.dev">
+        <q-item clickable to="/">
           <q-item-section avatar>
-            <q-icon name="close"/>
+            <q-icon name="close" style="color:black"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Cerrar</q-item-label>
+            <q-item-label style="color:black">Cerrar</q-item-label>
           </q-item-section>
         </q-item>
 
