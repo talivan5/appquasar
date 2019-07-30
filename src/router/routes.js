@@ -8,10 +8,9 @@ const routes = [
     path: '/home',
     component: () => import('layouts/MyLayout.vue'),
     children: [
-
-      { path: 'index', component: () => import('pages/Index.vue') },
-      { path: 'curso', component: () => import('pages/Cursos.vue') },
-      { path: 'incripcion', component: () => import('pages/PreInscripcion.vue') }
+      { path: '/', component: () => import('pages/Index.vue') },
+      { path: '/curso', component: () => import('pages/Cursos.vue') },
+      { path: '/incripcion', component: () => import('pages/PreInscripcion.vue') }
 
     ]
   }

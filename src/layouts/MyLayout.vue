@@ -77,7 +77,7 @@
           <q-route-tab
                 name="home"
                 icon="home"
-                to="/"
+                to="/home"
                 exact
                 label="Home" />
           <q-route-tab

@@ -1,37 +1,36 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-  <q-card class="my-card text-white"
-      style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)"
-    >
+  <div class=" ">
+  <q-card class="contenido">
      <div class="col-6">
         <div class="absolute-full text-subtitle2 flex flex-center">
-            <div class="q-pa-md" style="max-width: 400px">
-              <q-form
-              @submit="onSubmit"
-              @reset="onReset"
-              class="q-gutter-md"
-              >
-              <q-input
-              filled
-              v-model="name"
-              label="Usuario *"
-              hint="Usuario"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
+            <div class="q-pa-md login" style="max-width: 400px">
+              <q-form>
+                <div class="centro">
+                  <img src="statics/app-logo-128x128.png" alt="">
+                </div>
+                <div>
+                  <q-input
+                  filled
+                  v-model="promotores.cuenta"
+                  label="Usuario *"
+                  hint="Usuario"
+                  lazy-rules
+                  :rules="[ val => val && val.length > 0 || 'Please type something']"
+                  />
+                  <q-input
+                  filled
+                  v-model="promotores.password"
+                  label="Contraseña *"
+                  hint="Contraseña"
+                  lazy-rules
+                  :rules="[ val => val && val.length > 0 || 'Please type something']"
+                  />
+                </div>
 
-              <q-input
-              filled
-              v-model="name"
-              label="Contraseña *"
-              hint="Contraseña"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
-
-              <div>
-                <q-btn label="Ingresar" type="submit" color="primary" class="btn btn-lg" to="/home"></q-btn>
-              </div>
+                <br>
+                <div class="centro">
+                  <q-btn label="Iniciar" type="submit" color="primary" @click="principal"></q-btn>
+                </div>
             </q-form>
 
             </div>
@@ -40,3 +39,62 @@
     </q-card>
   </div>
 </template>
+<script>
+import { axiosInstance } from 'boot/axios'
+export default {
+  data () {
+    return {
+      bar2: false,
+      promotor: [],
+      promotores: {
+        id: '',
+        nombre: '',
+        apellidos: '',
+        ci: '',
+        direccion: '',
+        celular: '',
+        email: '',
+        rol: 'PROMOTOR',
+        cuenta: '',
+        password: ''
+      }
+    }
+  },
+  mounted () {
+    // this.setCursos()
+    this.listar()
+  },
+  methods: {
+    listar () {
+      axiosInstance.get('promotores')
+        .then((res) => {
+          this.promotor = res.data.response
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    },
+    principal () {
+      this.$router.push('/home')
+    }
+  }
+}
+</script>
+
+<style>
+.contenido{
+  background-color: aqua;
+}
+.login{
+  margin-top: 50%;
+  background-color: aqua;
+  align-self: auto;
+  border:blue 4px solid;
+  border-radius: 10px;
+}
+.centro{
+  margin-top: 5px;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+</style>

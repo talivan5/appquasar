@@ -57,6 +57,8 @@ export default {
       cursos: [],
       seminario: {
         nombre: '',
+        apellidos: '',
+        ci: '',
         fecha: '',
         costo: '',
         descripcion: '',
@@ -73,7 +75,7 @@ export default {
   // },
   methods: {
     listar () {
-      axiosInstance.get('seminarios')
+      axiosInstance.get('inscripciones')
         .then((res) => {
           this.cursos = res.data.response
         })
