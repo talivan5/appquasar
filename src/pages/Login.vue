@@ -46,6 +46,7 @@ export default {
     return {
       bar2: false,
       promotor: [],
+      IdPromotor: {},
       promotores: {
         id: '',
         nombre: '',
@@ -62,16 +63,21 @@ export default {
   },
   mounted () {
     // this.setCursos()
-    this.listar()
+    // this.listar()
   },
   methods: {
-    listar () {
-      axiosInstance.get('promotores')
-        .then((res) => {
-          this.promotor = res.data.response
-        })
-        .catch((err) => {
-          console.error(err)
+    comprobar (IdPromotor) {
+
+    },
+    loguiarse () {
+      axiosInstance.post('promotores', {
+        'usuario': this.promotores.usuario,
+        'password': this.promotores.password
+      }).then(response => {
+        this.comprobar(response.data.response.id)
+      })
+        .catch(error => {
+          console.log(error)
         })
     },
     principal () {
